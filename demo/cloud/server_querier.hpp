@@ -63,9 +63,9 @@ struct ServerQuerier
 
     ~ServerQuerier(void) = default;
 
-    void start(void)
+    void start(bool async)
     {
-        cloud_->start();
+        cloud_->start(async);
     }
 
     void join(void)

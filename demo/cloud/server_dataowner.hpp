@@ -44,18 +44,18 @@ struct ServerDataowner
         std::shared_ptr<stdsc::CallbackFunction> cb_disconn(
           new opcl::CallbackFunctionRequestDisconnect(param));
         callback.set(opsh::kControlCodeRequestDisconnect, cb_disconn);
-        
+
         std::shared_ptr<stdsc::CallbackFunction> cb_data(new T(param));
         callback.set(C, cb_data);
-        
+
         cloud_ = std::make_shared<opcl::CloudThread>(port, callback, state);
     }
 
     ~ServerDataowner(void) = default;
 
-    void start(void)
+    void start(bool async)
     {
-        cloud_->start();
+        cloud_->start(async);
     }
 
     void join(void)
@@ -66,7 +66,7 @@ struct ServerDataowner
 private:
     std::shared_ptr<opcl::CloudThread> cloud_;
 };
-    
+
 } /* namespace opsica_demo */
 
 #endif /* SERVER_DATAOWNER_HPP */

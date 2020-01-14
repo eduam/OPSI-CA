@@ -30,7 +30,7 @@ namespace opsica_dataowner
 /**
  * @brief Enumeration for state of data owner.
  */
-enum StateId_t : uint64_t
+enum StateId_t : int32_t
 {
     kStateNil = 0,
     kStateInit = 1,
@@ -63,7 +63,7 @@ struct StateInit : public stdsc::State
     StateInit(bool is_connected_from_querier = false,
               bool is_connected_to_cloud = false);
     virtual void set(stdsc::StateContext& sc, uint64_t event) override;
-    virtual uint64_t id(void) const override;
+    virtual int32_t id(void) const override;
 
 private:
     struct Impl;
@@ -80,7 +80,7 @@ struct StateConnected : public stdsc::State
 
     StateConnected(bool is_stored_pubkey = false, bool is_stored_fpmax = false);
     virtual void set(stdsc::StateContext& sc, uint64_t event) override;
-    virtual uint64_t id(void) const override;
+    virtual int32_t id(void) const override;
 
 private:
     struct Impl;
@@ -95,7 +95,7 @@ struct StateReady : public stdsc::State
     static std::shared_ptr<State> create();
     StateReady(void);
     virtual void set(stdsc::StateContext& sc, uint64_t event) override;
-    virtual uint64_t id(void) const override;
+    virtual int32_t id(void) const override;
 
 private:
     struct Impl;
@@ -110,7 +110,7 @@ struct StateUploaded : public stdsc::State
     static std::shared_ptr<State> create();
     StateUploaded(void);
     virtual void set(stdsc::StateContext& sc, uint64_t event) override;
-    virtual uint64_t id(void) const override;
+    virtual int32_t id(void) const override;
 
 private:
     struct Impl;
@@ -125,7 +125,7 @@ struct StateExit : public stdsc::State
     static std::shared_ptr<State> create();
     StateExit(void);
     virtual void set(stdsc::StateContext& sc, uint64_t event) override;
-    virtual uint64_t id(void) const override;
+    virtual int32_t id(void) const override;
 
 private:
     struct Impl;

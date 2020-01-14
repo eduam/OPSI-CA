@@ -27,23 +27,23 @@ struct DataownerThread::Impl
 {
     Impl(const char* port, stdsc::CallbackFunctionContainer& callback,
          stdsc::StateContext& state)
-      : server_(new stdsc::Server<>(port, state)), state_(state)
+      : server_(new stdsc::Server<>(port, state, callback)), state_(state)
     {
-        server_->set_callback(callback);
+        //server_->set_callback(callback);
         //state_.set(kEventConnectSocketFromQuerier);
         STDSC_LOG_INFO("Lanched dataowner thread (%s)", port);
     }
 
     ~Impl(void) = default;
 
-    void start(void)
+    void start(bool async)
     {
-        server_->start();
+        server_->start(async);
     }
 
     void join(void)
     {
-        server_->wait_for_finish();
+        server_->wait();
     }
 
 private:
@@ -58,9 +58,9 @@ DataownerThread::DataownerThread(const char* port,
 {
 }
 
-void DataownerThread::start(void)
+void DataownerThread::start(bool async)
 {
-    pimpl_->start();
+    pimpl_->start(async);
 }
 
 void DataownerThread::join(void)

@@ -56,13 +56,13 @@ struct StateInit::Impl
         }
     }
 
-    uint64_t id(void) const
+    int32_t id(void) const
     {
         return id_;
     }
 
 private:
-    uint64_t id_;
+    int32_t id_;
     bool is_connected_from_querier_;
     bool is_connected_to_cloud_;
     std::mutex mutex_;
@@ -102,13 +102,13 @@ struct StateConnected::Impl
         }
     }
 
-    uint64_t id(void) const
+    int32_t id(void) const
     {
         return id_;
     }
 
 private:
-    uint64_t id_;
+    int32_t id_;
     bool is_stored_pubkey_;
     bool is_stored_fpmax_;
     std::mutex mutex_;
@@ -143,13 +143,13 @@ struct StateReady::Impl
         }
     }
 
-    uint64_t id(void) const
+    int32_t id(void) const
     {
         return id_;
     }
 
 private:
-    uint64_t id_;
+    int32_t id_;
     std::mutex mutex_;
 };
 
@@ -182,13 +182,13 @@ struct StateUploaded::Impl
         }
     }
 
-    uint64_t id(void) const
+    int32_t id(void) const
     {
         return id_;
     }
 
 private:
-    uint64_t id_;
+    int32_t id_;
     std::mutex mutex_;
 };
 
@@ -202,13 +202,13 @@ struct StateExit::Impl
     {
     }
 
-    uint64_t id(void) const
+    int32_t id(void) const
     {
         return id_;
     }
 
 private:
-    uint64_t id_;
+    int32_t id_;
     std::mutex mutex_;
 };
 
@@ -232,7 +232,7 @@ void StateInit::set(stdsc::StateContext& sc, uint64_t event)
     pimpl_->set(sc, event);
 }
 
-uint64_t StateInit::id(void) const
+int32_t StateInit::id(void) const
 {
     return pimpl_->id();
 }
@@ -257,7 +257,7 @@ void StateConnected::set(stdsc::StateContext& sc, uint64_t event)
     pimpl_->set(sc, event);
 }
 
-uint64_t StateConnected::id(void) const
+int32_t StateConnected::id(void) const
 {
     return pimpl_->id();
 }
@@ -279,7 +279,7 @@ void StateReady::set(stdsc::StateContext& sc, uint64_t event)
     pimpl_->set(sc, event);
 }
 
-uint64_t StateReady::id(void) const
+int32_t StateReady::id(void) const
 {
     return pimpl_->id();
 }
@@ -301,7 +301,7 @@ void StateUploaded::set(stdsc::StateContext& sc, uint64_t event)
     pimpl_->set(sc, event);
 }
 
-uint64_t StateUploaded::id(void) const
+int32_t StateUploaded::id(void) const
 {
     return pimpl_->id();
 }
@@ -323,7 +323,7 @@ void StateExit::set(stdsc::StateContext& sc, uint64_t event)
     pimpl_->set(sc, event);
 }
 
-uint64_t StateExit::id(void) const
+int32_t StateExit::id(void) const
 {
     return pimpl_->id();
 }

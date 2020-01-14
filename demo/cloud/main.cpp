@@ -37,15 +37,15 @@ int main()
         stdsc::StateContext state(std::make_shared<opcl::StateInit>());
 
         ServerQuerier server_querier(param, state);
-        server_querier.start();
+        server_querier.start(true);
         ServerDataowner<opcl::CallbackFunctionDataDataA,
                         opsh::kControlCodeDataDataA>
           server_dataA(param, state, CLOUD_PORT_FOR_DATAOWA);
-        server_dataA.start();
+        server_dataA.start(true);
         ServerDataowner<opcl::CallbackFunctionDataDataB,
                         opsh::kControlCodeDataDataB>
           server_dataB(param, state, CLOUD_PORT_FOR_DATAOWB);
-        server_dataB.start();
+        server_dataB.start(true);
 
         server_querier.join();
         server_dataA.join();

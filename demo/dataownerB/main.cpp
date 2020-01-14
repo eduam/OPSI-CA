@@ -88,7 +88,7 @@ void create_querier_server(opdo::CallbackParam& param,
     callback.set(opsh::kControlCodeRequestUpload, cb_upload);
 
     opdo::DataownerThread dataowner(port, callback, state);
-    dataowner.start();
+    dataowner.start(true);
     dataowner.join();
 }
 

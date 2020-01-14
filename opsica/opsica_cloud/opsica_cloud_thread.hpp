@@ -39,7 +39,7 @@ public:
                 stdsc::StateContext& state);
     ~CloudThread(void) = default;
 
-    void start(void);
+    void start(bool async);
     void join(void);
 
 private:
